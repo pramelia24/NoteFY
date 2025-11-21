@@ -1,0 +1,245 @@
+/* Variabel Warna Utama */
+:root {
+    --navy: #001f3f;
+    --navy-light: #003366;
+    --white: #ffffff;
+    --off-white: #f4f7f6;
+    --gray: #aaa;
+    --text-dark: #333;
+    --accent: #FFD700;     /* Aksen asli (Kuning Emas) */
+    --accent-lime: #39FF14; /* Aksen baru (Electric Lime) */
+}
+
+/* ... (Reset Dasar, App Bar, Bottom Nav, Konten, Halaman) ... */
+/* Sebagian besar CSS dasar dari versi sebelumnya masih sama */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+body {
+    background-color: var(--off-white);
+    color: var(--text-dark);
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+.app-bar {
+    background-color: var(--navy);
+    color: var(--white);
+    padding: 15px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.bottom-nav {
+    background-color: var(--white);
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+.nav-btn {
+    background: none; border: none;
+    color: var(--gray);
+    display: flex; flex-direction: column;
+    align-items: center; font-size: 10px;
+    padding: 5px; cursor: pointer; flex-grow: 1;
+}
+.nav-btn .material-icons { font-size: 24px; }
+.nav-btn.active { color: var(--navy); } /* Diubah jadi navy */
+
+.content { padding: 20px; }
+.page { display: none; }
+.page.active { display: block; }
+.hidden { display: none !important; }
+
+h2 {
+    color: var(--navy-light);
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--navy-light);
+    padding-bottom: 5px;
+}
+h3 {
+    color: var(--text-dark);
+    margin: 20px 0 10px 0;
+}
+
+/* === FITUR BARU: HALAMAN HOME === */
+.progress-header {
+    background-color: var(--navy-light);
+    color: var(--white);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.progress-ring-container {
+    margin: 15px auto;
+}
+.progress-ring {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    /* Background akan diatur oleh JS */
+    background: radial-gradient(closest-side, var(--navy-light) 79%, transparent 80% 100%),
+                conic-gradient(var(--accent-lime) 0%, var(--gray) 0%);
+    transition: background 0.3s;
+}
+#streak-counter {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+/* === FITUR BARU: HALAMAN MAPEL (GRID) === */
+.subject-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 kolom */
+    gap: 15px;
+}
+.subject-card {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.subject-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+.subject-card i {
+    font-size: 36px;
+    color: var(--navy);
+}
+.subject-card h4 {
+    margin-top: 10px;
+    color: var(--navy-light);
+}
+
+/* === FITUR BARU: HALAMAN DETAIL MAPEL === */
+.btn-back {
+    background: none;
+    border: none;
+    color: var(--navy);
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+.subject-notes-card {
+    background-color: var(--white);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    white-space: pre-wrap; /* Jaga format catatan */
+    min-height: 50px;
+}
+
+/* === FITUR BARU: DIAGRAM === */
+.chart-container {
+    background-color: var(--white);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+/* === TAMPILAN TUGAS (TASK ITEM) BARU === */
+.task-container { display: grid; gap: 15px; }
+.task-item {
+    background-color: var(--white);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.task-item.completed { text-decoration: line-through; opacity: 0.6; }
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.task-info strong { font-size: 1.1em; }
+.task-info p { font-size: 0.9em; color: #666; margin: 4px 0; }
+.subject-tag {
+    background-color: var(--navy-light);
+    color: var(--white);
+    font-size: 0.8em;
+    padding: 3px 8px;
+    border-radius: 12px;
+    display: inline-block;
+}
+/* Style untuk lampiran */
+.task-attachments { margin-top: 10px; }
+.attachment-link {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--off-white);
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 5px 10px;
+    font-size: 0.85em;
+    color: var(--navy);
+    text-decoration: none;
+    margin-right: 5px;
+}
+.attachment-link i { font-size: 16px; margin-right: 5px; }
+
+/* ... (Style FAB, Modal, Form sama seperti sebelumnya) ... */
+.fab {
+    background-color: var(--navy); /* Diubah jadi navy */
+    color: var(--white); /* Diubah jadi putih */
+    width: 56px; height: 56px; border-radius: 50%;
+    border: none; position: fixed; bottom: 80px;
+    right: 20px; font-size: 24px; display: flex;
+    align-items: center; justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    cursor: pointer; z-index: 99;
+}
+.modal {
+    position: fixed; z-index: 200; left: 0; top: 0;
+    width: 100%; height: 100%; overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+    display: none; align-items: center; justify-content: center;
+}
+.modal.show { display: flex; }
+.modal-content {
+    background-color: var(--white); margin: auto; padding: 20px;
+    border-radius: 8px; width: 90%; max-width: 500px;
+    max-height: 90vh; overflow-y: auto; /* Agar bisa di-scroll */
+}
+/* ... (Style Form, Tombol, dll) ... */
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; margin-bottom: 5px; font-weight: bold; color: var(--navy-light); }
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 10px; border: 1px solid #ccc;
+    border-radius: 4px; font-size: 1em;
+}
+.form-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+.btn-primary {
+    background-color: var(--navy); color: var(--white); border: none;
+    padding: 10px 15px; border-radius: 4px; cursor: pointer; font-weight: bold;
+}
+.btn-secondary {
+    background-color: var(--gray); color: var(--white); border: none;
+    padding: 10px 15px; border-radius: 4px; cursor: pointer;
+}
